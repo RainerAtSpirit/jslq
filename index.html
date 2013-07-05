@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width"/>
+    <meta content="JavaScript Language Query Playground. OData access how it should be." name="description" />
+    <title>Javascript language query (JSLQ) playground</title>
+
+    <!-- Included CSS Files -->
+    <link rel="stylesheet" href="stylesheets/app.css"/>
+    <link rel="stylesheet" href="http://jaydata.spirit.de/Libs/rainbow/themes/blackboard.css"/>
+    <script src="javascripts/foundation/modernizr.foundation.js"></script>
+
+    <!-- IE Fix for HTML5 Tags -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-31072569-6']);
+        _gaq.push(['_setDomainName', 'spirit.de']);
+        _gaq.push(['_trackPageview']);
+
+    </script>
+
+</head>
+<body>
+
+<nav class="top-bar">
+    <ul>
+        <li class="name"><h1><a href="/">JSLQ playground</a></h1></li>
+        <li class="toggle-topbar"><a href="#"></a></li>
+    </ul>
+    <section>
+        <ul class="left">
+
+        </ul>
+
+        <ul class="right">
+            <!-- <li><a href="#JSLQ101">JSLQ101</a></li>
+          <li><a href="#listdata">SharePoint (listdata.svc)</a></li>
+          <li><a href="#api">SharePoint (_api)</a></li>-->
+        </ul>
+    </section>
+</nav>
+
+<div class="row">
+    <div class="twelve columns">
+        <h1>This is NOT for the faint-hearted ;-)</h1>
+
+        <h3 class="subheader">Welcome to the <strong>J</strong>ava<strong>S</strong>cript <strong>L</strong>anguage
+            <strong>Q</strong>uery (JSLQ) playground</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="twelve columns">
+        <div class="row">
+            <div class="twelve columns">
+                <div id="featuredContent">
+                    <div>
+                        <h4>Ever wondered how hard it is to query OData by using
+                            <a href="http://www.odata.org/documentation/uri-conventions">URI conventions</a>?</h4>
+                        <h5 class="subheader">String manipulation to create something like the following is not your style?</h5>
+                        <p><pre><code data-language="javascript">
+var serverurl = 'http://services.odata.org/Northwind/Northwind.svc/',
+        odata_endpoint = 'products',
+        query = '?$filter=(ProductName%20eq%20%27Chai%27)' +
+                '&$callback=parent.handleJSONP_1' +
+                '&$format=json'
+
+$.ajax({
+  url: serverUrl + odata_endpoint + "/" + query,
+  ...
+});
+</code></pre></p>
+                <p>In this playground you use <a href="http://jaydata.org">JayData</a> to make real-time queries
+                            against a remote OData data end point
+                            <a href="http://services.odata.org/Northwind/Northwind.svc">
+                                http://services.odata.org/Northwind/Northwind.svc</a>. Figure out on your own if that
+                                makes your life easier.
+                        </p>
+
+                        <p><span class="radius alert label">Disclaimer:</span> This web site is not a production site.
+                            It was created by <a href="http://rainerat.spirit.de">RainerAtSpirit</a> mainly for
+                            educational purposes and fun.
+                            <br/>Feel free to use at your own risk.</p>
+                    </div>
+                    <div>
+                        <h4>Before you start</h4>
+
+                        <p>Open your favorite console</p>
+
+                        <p>
+                            <img src="images/GetReady.jpg"/>
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Hit the button</h4>
+
+                        <p>JayData will run a live query against
+                            <a href="http://services.odata.org/Northwind/Northwind.svc">http://services.odata.org/Northwind/Northwind.svc</a>
+                            so it might take a while before the results show up </p>
+
+                        <p><img src="images/ExploreTheResults.jpg"/></p>
+                    </div>
+                    <div>
+                        <h4>Play around!</h4>
+
+                        <p>Copy/paste the code into the console and bend it to your will</p>
+
+                        <p><img src="images/ModifyAndRun.jpg"/></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+    </div>
+
+
+</div>
+
+<div class="row">
+    <div class="panel radius">
+        <h4>Bootstrap</h4>
+
+        <p>This is included to initialize the northwind context instance, used in the examples below.</p>
+    <pre><code data-language="html">
+        &lt;!-- JayData --&gt;
+        &lt;script src="http://jaydata.spirit.de/CodePlex/JayData-1.2/datajs-1.0.3.js"&gt;&lt;/script&gt;
+        &lt;script src="http://jaydata.spirit.de/CodePlex/JayData-1.2/jaydata.js"&gt;&lt;/script&gt;
+        &lt;script src="http://jaydata.spirit.de/CodePlex/JayData-1.2/jaydatamodules/deferred.js"&gt;&lt;/script&gt;
+        &lt;script src="http://jaydata.spirit.de/CodePlex/JayData-1.2/jaydataproviders/oDataProvider.js"&gt;&lt;/script&gt;
+        &lt;script src="http://jaydata.spirit.de/examples/Northwind.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript"&gt;
+        OData.defaultHttpClient.enableJsonpCallback = true;
+
+        window.northwind = new JayDataExamples.NorthwindEntities( {
+        name: 'oData',
+        oDataServiceHost: 'http://services.odata.org/Northwind/Northwind.svc' }
+        );
+        &lt;/script&gt;</code></pre>
+    </div>
+    <div id="dynExamples" class="twelve columns"></div>
+</div>
+
+<div class="row">
+    <hr/>
+    <h4 class="subheader">Comments</h4>
+    <div id="siteFeedback">
+        <div id="disqus_thread"></div>
+    </div>
+</div>
+
+<hr/>
+<div class="row">
+    <div class="four columns">
+        <p>Copyright &copy; 2012 <a href="http://rainerat.spirit.de">RainerAtSpirit</a></p>
+    </div>
+    <div class="eight columns">
+        <ul class="link-list right">
+            <li><a href="http://jaydata.org">JayData</a></li>
+            <li><a href="http://jaydata.org/blog/javascript-language-query-jslq-101">JSLQ 101</a></li>
+            <li><a href="/">Home</a></li>
+        </ul>
+    </div>
+</div>
+</div>
+
+
+<!-- Included JS Files (Uncompressed) -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<script src="javascripts/foundation/jquery.foundation.orbit.js"></script>
+
+<!-- Application Javascript, safe to override -->
+<script src="javascripts/foundation/app.js"></script>
+
+
+<!-- Code highlighting -->
+<script src="http://jaydata.spirit.de/Libs/rainbow/rainbow.min.js"></script>
+<script src="http://jaydata.spirit.de/Libs/rainbow/language/generic.js"></script>
+<script src="http://jaydata.spirit.de/Libs/rainbow/language/javascript.js"></script>
+<script src="http://jaydata.spirit.de/Libs/rainbow/language/html.js"></script>
+
+<!-- JayData -->
+<script src="http://jaydata.spirit.de/CodePlex/JayData-1.2/datajs-1.0.3.js"></script>
+<script src="http://jaydata.spirit.de/CodePlex/JayData-1.2/jaydata.min.js"></script>
+<script src="http://jaydata.spirit.de/CodePlex/JayData-1.2/jaydatamodules/deferred.js"></script>
+<script src="http://jaydata.spirit.de/CodePlex/JayData-1.2/jaydataproviders/oDataProvider.min.js"></script>
+<script src="http://jaydata.spirit.de/examples/Northwind.js"></script>
+<script type="text/javascript">
+    OData.defaultHttpClient.enableJsonpCallback = true;
+    //jQuery.support.cors = true;
+    window.northwind = new JayDataExamples.NorthwindEntities({
+        name:'oData',
+        oDataServiceHost:'http://services.odata.org/Northwind/Northwind.svc' });
+</script>
+
+<script src="javascripts/sandbox.js"></script>
+
+<script type="text/javascript">
+
+    /* * * DISQUS CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+
+    var disqus_shortname = 'javascriptlanguagequery';
+
+    // Do not set defaults if called with an eid query string
+    if (!JSLQ101.params.eid) {
+        var disqus_identifier = 'Default';
+        var disqus_url = 'http://jslq.spirit.de';
+    }
+
+    var disqus_config = function () {
+    };
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!--<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>-->
+
+<script type="text/javascript">
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+
+</body>
+</html>
