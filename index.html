@@ -74,8 +74,9 @@
                     <div>
                         <h4>Ever wondered how hard it is to query OData by using
                             <a href="http://www.odata.org/documentation/uri-conventions">URI conventions</a>?</h4>
-                        <h5 class="subheader">String manipulation to create something like the following is not your style?</h5>
-                        <p><pre><code data-language="javascript">
+                        <h5 class="subheader">String manipulation to create something like the following is not your
+                          style?</h5>
+                        <div><pre><code data-language="javascript">
 var serverurl = 'http://services.odata.org/Northwind/Northwind.svc/',
         odata_endpoint = 'products',
         query = '?$filter=(ProductName%20eq%20%27Chai%27)' +
@@ -86,7 +87,8 @@ $.ajax({
   url: serverUrl + odata_endpoint + "/" + query,
   ...
 });
-</code></pre></p>
+</code></pre></div>
+
                 <p>In this playground you use <a href="http://jaydata.org">JayData</a> to make real-time queries
                             against a remote OData data end point
                             <a href="http://services.odata.org/Northwind/Northwind.svc">
@@ -178,7 +180,7 @@ $.ajax({
         </ul>
     </div>
 </div>
-</div>
+
 
 
 <!-- Included JS Files (Uncompressed) -->
